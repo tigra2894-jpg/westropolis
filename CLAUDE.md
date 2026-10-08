@@ -1,4 +1,4 @@
-# Lawless: Two Worlds – reguli de lucru
+# Westropolis – reguli de lucru
 
 Proiectul a pornit de la zero la 08.10.2026, într-un repo nou și curat. Nimic din proiectele vechi (Ardeal City,
 Orasul) nu se păstrează și nu se mai aplică.
@@ -9,4 +9,6 @@ Orasul) nu se păstrează și nu se mai aplică.
 - Fișierul acesta e provizoriu (planificat): se înlocuiește cu `CLAUDE.md` complet la etapa 0.10.
 
 ## Stadiul
-- Etapa curentă: **0.1 – Numele jocului** (în lucru; constatările sunt notate la etapa 0.1 din `PLAN.md`).
+- Numele jocului: **Westropolis**, pachetul `com.tigra2805.westropolis` (hotărât la 08.10.2026; fostul nume de lucru „Lawless: Two Worlds”).
+- Etape gata: 0.1 (numele, „merge” la 08.10.2026), 0.2 (repo-urile vechi șterse complet).
+- Etapa curentă: **0.3 – Unity Hub și Unity 6 LTS** (pe Mac).
