@@ -1,4 +1,4 @@
-# PLAN – Lawless: Two Worlds (Unity)
+# PLAN – Westropolis (Unity)
 
 Ultima actualizare a planului: 8 octombrie 2026 (versiunea 2: repo public, reparațiile și completările analizei)
 Dezvoltator: Tigra2805
@@ -26,7 +26,7 @@ o etapă și lista tuturor etapelor, de la instalarea Unity până la Google Pla
 
 ## 1. Deciziile luate
 
-Construim „Lawless: Two Worlds” în Unity, pe Mac-ul M2, cu Claude Code: un joc open-world realist pentru Android
+Construim „Westropolis” în Unity, pe Mac-ul M2, cu Claude Code: un joc open-world realist pentru Android
 și macOS, în 16 faze (0–15). Fiecare etapă e gândită pentru 1–2 zile de lucru, la circa 5 ore pe zi.
 
 **Principiul de bază: puțin și foarte bine, fără grabă.** Fiecare bucată se verifică și se termină corect înainte de
@@ -34,10 +34,10 @@ următoarea. O etapă poate dura oricât e nevoie, dar odată terminată nu mai 
 
 | Subiect | Decizie |
 | --- | --- |
-| Nume joc | Lawless: Two Worlds (verificat la etapa 0.1, înainte de crearea proiectului) |
-| Pachet Android | com.tigra2805.lawlesstwoworlds (nu se mai poate schimba după publicare) |
-| Proiecte vechi | `Ardeal-City` și `Orasul` se șterg complet (cu tot cu istorie, ramuri și release-uri); proiectul pornește într-un repo nou, curat, `lawless-two-worlds` (08.10.2026) |
-| Repo-uri | **Public** `lawless-two-worlds` (codul, scenele, modelele CC0/CC-BY) + **privat** `lawless-privat` (doar ce nu are voie să fie public: animațiile Mixamo, pachetele din Asset Store) |
+| Nume joc | Westropolis (ales la etapa 0.1; fostul nume de lucru: „Lawless: Two Worlds”) |
+| Pachet Android | com.tigra2805.westropolis (nu se mai poate schimba după publicare) |
+| Proiecte vechi | `Ardeal-City` și `Orasul` se șterg complet (cu tot cu istorie, ramuri și release-uri); proiectul pornește într-un repo nou, curat, `westropolis` (08.10.2026) |
+| Repo-uri | **Public** `westropolis` (codul, scenele, modelele CC0/CC-BY) + **privat** `westropolis-privat` (doar ce nu are voie să fie public: animațiile Mixamo, pachetele din Asset Store) |
 | Calculator | Mac cu M2 (Unity + Claude Code + Blender) |
 | Experiență Unity | Deloc: fiecare pas explicat detaliat |
 | Lucru de pe telefon | Da: scripturi și logică prin Claude Code pe GitHub; partea vizuală doar pe Mac |
@@ -83,7 +83,7 @@ Workflow-ul de construire din repo-ul public descarcă repo-ul privat în `Asset
 | Limită | Valoare | Regula noastră |
 | --- | --- | --- |
 | Fișier în repo | Avertisment la 50 MB, blocat la 100 MB | Fiecare fișier sub 50 MB; modelele intră deja simplificate |
-| Mărimea repo-ului | Recomandat sub 1–5 GB | Originalele mari de pe Sketchfab NU intră în repo (rămân pe Mac, în `~/LawlessSurse/`) |
+| Mărimea repo-ului | Recomandat sub 1–5 GB | Originalele mari de pe Sketchfab NU intră în repo (rămân pe Mac, în `~/WestropolisSurse/`) |
 | Git LFS | ~1 GB spațiu + ~1 GB trafic pe lună, și la public | **Fără Git LFS** (fiecare construire ar consuma traficul) |
 | Memoria Actions (cache) | 10 GB pe repo | Doar folderul `Library`; cache-urile vechi se șterg singure |
 | Artefacte Actions | Păstrate maxim 90 de zile, greu de descărcat de pe telefon (zip, cont) | APK-ul se pune în **GitHub Releases**, nu ca artefact |
@@ -191,7 +191,7 @@ Aceste reguli se scriu o singură dată în `CLAUDE.md` (etapa 0.10). Claude Cod
 
 ### 4.2 Plecat, de pe telefon
 
-1. Deschizi Claude Code din aplicația Claude, pe repo-ul `lawless-two-worlds`.
+1. Deschizi Claude Code din aplicația Claude, pe repo-ul `westropolis`.
 2. Lucrezi doar la etapele marcate „merge și de pe telefon”: scripturi, logică, texte, traduceri, reparații.
 3. Claude Code lucrează pe ramura etapei; verificarea rapidă arată în câteva minute dacă s-a stricat ceva.
 4. Pentru APK: în aplicația GitHub → Actions → „APK Android” → „Run workflow” pe ramura etapei. APK-ul apare în Releases → „test”.
@@ -409,14 +409,12 @@ Dacă lipsește ceva, se rezolvă întâi lipsa, apoi începe construcția.
 La finalul fazei 0 ai pe Galaxy S21 Ultra un APK cu un cub și panoul de test, construit automat de GitHub, plus
 conceptul jocului pe o pagină. Asta dovedește că tot lanțul funcționează înainte de a scrie jocul.
 
-- [ ] **0.1 Numele jocului.** Cauți „Lawless: Two Worlds” pe Google Play, Steam, App Store și în registrul de mărci
-  EUIPO (și INPI, Franța). *Merge și de pe telefon.* *Gata când:* numele e liber sau ai ales altul; numele și pachetul
-  sunt notate (vor intra în `DECIZII.md` la 0.10).
-  *Constatări (08.10.2026, căutare pe web):* niciun joc numit exact „Lawless: Two Worlds”. Există însă nume apropiate:
-  „Lawless West” (strategie western, Steam, 2023), „The Lawless” (shooter western pentru mobil, Android/iOS), „Lawless
-  Lands” (RPG medieval, Steam), plus seria cunoscută **„Two Worlds”** (RPG, TopWare Interactive, 2007 și 2010), al cărei
-  nume e foarte probabil marcă înregistrată pentru jocuri. Registrul EUIPO nu a putut fi citit automat: se verifică de
-  mână în TMview, pentru „LAWLESS” și „TWO WORLDS”, clasele 9 și 41. Decizia (păstrat / schimbat) o ia utilizatorul.
+- [ ] **0.1 Numele jocului.** Hotărât de utilizator la 08.10.2026: **Westropolis** (West + Metropolis: cele două lumi
+  într-un cuvânt), pachetul `com.tigra2805.westropolis`. Vechiul nume „Lawless: Two Worlds” a fost abandonat: „Lawless”
+  e folosit de multe jocuri (Lawless West, The Lawless, Lawless de la DeNA, Lawless Lands), iar „Two Worlds” e seria
+  TopWare Interactive. Căutarea pe web (08.10.2026): niciun joc „Westropolis”; nume apropiate fără risc real: Westopia
+  (păcănele iOS), Destropolis (shooter Xbox/PC), Retropolis (joc de masă). Rezervă: „Duskline”. *Merge și de pe telefon.*
+  *Gata când:* utilizatorul a verificat „WESTROPOLIS” în TMview (clasele 9 și 41) și nu există nicio marcă.
 - [x] **0.2 Repo-urile vechi.** Hotărât de utilizator (08.10.2026): din `Ardeal-City` și `Orasul` nu se păstrează nimic;
   se șterg complet din GitHub → repo → Settings → Danger Zone → Delete this repository (dispar și ramurile, istoria,
   release-urile și memoria Actions). Workflow-ul de construire și verificarea cu Roslyn se scriu din nou la 0.12 și 0.14.
@@ -429,7 +427,7 @@ conceptul jocului pe o pagină. Asta dovedește că tot lanțul funcționează �
   Unity la 1 × 1 × 1 m, cu fața spre +Z.
 - [ ] **0.5 Proiectul nou.** Șablon „Universal 3D” (URP). Setări:
   - platforma Android, orientarea pe orizontală (Landscape Left + Right);
-  - numele jocului, pachetul `com.tigra2805.lawlesstwoworlds`, dezvoltator Tigra2805;
+  - numele jocului, pachetul `com.tigra2805.westropolis`, dezvoltator Tigra2805;
   - Scripting Backend **IL2CPP**, arhitectura **ARM64** (obligatorii pentru Google Play);
   - grafica **Vulkan**, cu OpenGL ES 3 ca rezervă;
   - Active Input Handling = Input System (cere repornirea Unity);
@@ -439,10 +437,10 @@ conceptul jocului pe o pagină. Asta dovedește că tot lanțul funcționează �
 - [ ] **0.6 Pachetele, câte unul.** În ordinea din tabelul 7.1, cu commit după fiecare. Plus verificarea Starter Assets
   (fără instalare dacă nu e compatibil). *Gata când:* toate pachetele sunt instalate, zero erori, versiunile notate.
 - [ ] **0.7 Repo-urile GitHub.**
-  - Repo **public** `lawless-two-worlds` (creat curat la 08.10.2026, fără istorie veche). Conținut: `.gitignore` pentru Unity + liniile de siguranță (capitolul 2.3),
+  - Repo **public** `westropolis` (creat curat la 08.10.2026, fără istorie veche). Conținut: `.gitignore` pentru Unity + liniile de siguranță (capitolul 2.3),
     `.gitattributes` (fișierele Unity ca text, fără LFS), Smart Merge (UnityYAMLMerge) configurat în Git pe Mac,
     `README.md` scurt cu „Toate drepturile rezervate” pentru cod și trimitere la `CREDITS.md` pentru resurse.
-  - Repo **privat** `lawless-privat`, clonat pe Mac în `Assets/_Privat/`.
+  - Repo **privat** `westropolis-privat`, clonat pe Mac în `Assets/_Privat/`.
   - Ramura `main` protejată: doar prin Pull Request.
   *Gata când:* primul commit apare pe GitHub în ambele repo-uri și `Assets/_Privat/` nu apare în cel public.
 - [ ] **0.8 Claude Code pe Mac.** Instalare, autentificare, pornire în folderul proiectului. *Gata când:* Claude Code vede
@@ -719,4 +717,4 @@ Claude Code nu le ia singur: îl întreabă pe utilizator când ajunge la faza r
 
 ---
 
-**Următorul pas:** Faza 0, etapa 0.1 – verificarea numelui „Lawless: Two Worlds” (merge și de pe telefon).
+**Următorul pas:** Faza 0, etapa 0.1 – verificarea numelui „Westropolis” în TMview, apoi etapa 0.3 – instalarea Unity pe Mac.
