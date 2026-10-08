@@ -8,6 +8,8 @@ Detaliile complete sunt în `PLAN.md`; aici sunt regulile care se respectă mere
 - Nume: **Westropolis** · pachet Android `com.tigra2805.westropolis` · dezvoltator Tigra2805.
 - Unity **6.3 LTS, patch fix `6000.3.25f1`** (imagine GameCI `unityci/editor:ubuntu-6000.3.25f1-android-3`). Nu se schimbă.
 - Repo public `tigra2894-jpg/westropolis`; repo privat `westropolis-privat` (Mixamo, Asset Store) în `Assets/_Privat/`.
+- Calculatorul: **MacBook M2 (Apple Silicon), macOS 15 Sequoia** – Unity, Blender, Android SDK în variantele Apple
+  Silicon; pentru construirea macOS cu IL2CPP trebuie Xcode (sau Command Line Tools).
 - Versiunile pachetelor: se notează aici la etapa 0.6 (Cinemachine 3, nu 2).
 
 ## La începutul fiecărei sesiuni
