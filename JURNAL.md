@@ -15,3 +15,16 @@ Ce s-a făcut, ce e în lucru, probleme cunoscute, următorul pas. Se scrie la f
   `CREDITS.md`, `ERORI.md`, `VERIFICARE.md`.
 - Probleme cunoscute: ramura `etapa-0.1` n-a putut fi ștearsă din sesiune (o șterge utilizatorul din PR #1).
 - **Următorul pas:** „merge” pentru 0.10; apoi 0.3 când utilizatorul e la Mac (sau 0.19, conceptul, dacă vrea).
+
+## 08.10.2026 – proiectul Unity fără Mac (ramura `etapa-0.5`)
+- `ProjectSettings/ProjectVersion.txt`: `6000.3.25f1 (e1dba0a9aba4)`; `Packages/manifest.json` cu versiunile fixe.
+- `Configurare.cs`: nume, pachet, IL2CPP + ARM64, Vulkan + GLES3, orizontală, Input System, Force Text, URP,
+  straturi + coliziuni, Localization (en, ro, tabelul „Interfata”, limba salvată). Se aplică singur la prima
+  deschidere pe Mac.
+- `Construire.cs`: scena de test (podea + cub care se rotește), APK Development cu numărul versiunii din GitHub.
+- `SetariGrafice.cs` (30 FPS + Render Scale 0,7 pe telefon), panoul de test (`PanouTest`, `JurnalErori`, `ModTest`).
+- Teste EditMode (`TesteBaza`): pachet, IL2CPP/ARM64, straturi, formatarea din panou.
+- Workflow-uri: `verificare.yml` (compilare + teste), `apk-android.yml` (APK în Releases → „test”), acțiunea comună
+  `pregateste-unity`. `.gitignore` (cu liniile de siguranță), `.gitattributes`, `README.md`.
+- Necompilat încă: aici nu există Unity; prima verificare reală e pe GitHub, după secretele `UNITY_EMAIL` și `UNITY_PASSWORD`.
+- **Următorul pas:** utilizatorul pune cele 2 secrete → pornesc verificarea → repar ce iese → APK-ul pe telefon.

@@ -462,8 +462,9 @@ conceptul jocului pe o pagină. Asta dovedește că tot lanțul funcționează �
 - [ ] **0.11 Fundația proiectului.** Folderele din 6.2; straturile (Player, Vehicul, Cal, NPC, Teren, Clădiri, Apă,
   Interacțiune, Proiectil) și matricea de coliziuni; Localization configurat (limbile en și ro, primul tabel de texte,
   limba aleasă salvată). *Gata când:* totul e notat în `DECIZII.md`, zero erori.
-- [ ] **0.12 APK automat.** GitHub Actions cu GameCI. Secretele: `UNITY_LICENSE` (conținutul fișierului `.ulf` de pe Mac,
-  după activarea licenței în Unity Hub), `UNITY_EMAIL`, `UNITY_PASSWORD`, `PRIVAT_TOKEN`. Workflow-ul: descarcă repo-ul
+- [ ] **0.12 APK automat.** GitHub Actions: Unity `6000.3.25f1` instalat cu `RageAgainstThePixel/unity-setup`, licența
+  Personal activată direct cu contul (fără fișier `.ulf`, deci fără Mac). Secretele: `UNITY_EMAIL`, `UNITY_PASSWORD`
+  (și `PRIVAT_TOKEN` când apare repo-ul privat). Workflow-ul: descarcă repo-ul
   privat în `Assets/_Privat/`, păstrează `Library` în cache, construiește Addressables înainte de joc (din faza 3),
   crește automat numărul versiunii, pune APK-ul în Releases → „test” (înlocuit). *Gata când:* butonul „Run workflow”
   produce un APK descărcabil din Releases, de pe telefon.

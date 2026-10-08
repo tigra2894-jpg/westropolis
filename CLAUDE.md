@@ -99,8 +99,15 @@ Detaliile complete sunt în `PLAN.md`; aici sunt regulile care se respectă mere
 | `VERIFICARE.md` | La fiecare etapă terminată |
 | `CONCEPT.md` | La etapa 0.19 |
 
+## Lucrul fără Mac (cerut 08.10.2026)
+- Utilizatorul lucrează doar prin Claude Code. Lucrez continuu, ca și cum Unity `6000.3.25f1` ar fi instalat pe Mac;
+  verificarea o face GitHub Actions (compilare, teste, APK). Când instalează Unity pe Mac, mă anunță.
+- Nu-i cer „merge” pentru fiecare pas tehnic; îi dau doar ce are de verificat el (APK-ul pe telefon, capturi).
+
 ## Stadiul
-- Gata: 0.1 (numele), 0.2 (repo-urile vechi șterse).
-- 0.3 (Unity `6000.3.25f1` pe Mac): versiunea aleasă, instalarea o face utilizatorul mai târziu; mă anunță el.
-- În lucru: 0.10 (acest fișier și fișierele de memorie), făcută înaintea lui 0.4–0.9 cu acordul utilizatorului
-  (08.10.2026: „fă doar că Unity pe Mac îl voi instala mai târziu”).
+- Gata: 0.1 (numele), 0.2 (repo-urile vechi), 0.10 (fișierele de memorie).
+- 0.3: Unity `6000.3.25f1` ales; instalarea pe Mac mai târziu (o anunță utilizatorul).
+- Scrise pe ramura `etapa-0.5`, de verificat pe GitHub: 0.5 (configurarea proiectului prin cod), 0.6 (pachetele),
+  0.7 (fișierele repo-ului), 0.11 (straturi, coliziuni, Localization), 0.12 (APK automat), 0.14 (verificarea rapidă),
+  0.16 (scena de test cu cubul), 0.17 (panoul de test). Așteaptă secretele `UNITY_EMAIL` și `UNITY_PASSWORD`.
+- Rămân pentru Mac: 0.4 (Blender), 0.8–0.9 (Claude Code + MCP pe Mac), 0.13 (cheia de semnare), 0.15 (cablu).

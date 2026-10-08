@@ -1,0 +1,79 @@
+name: APK Android
+
+# Etapa 0.12: APK-ul de test (Development Build, mod test) la unirea in main sau la butonul „Run workflow”
+# (pe orice ramura). APK-ul merge in Releases -> „test” (inlocuit la fiecare construire), nu ca artefact.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Assets/**'
+      - 'Packages/**'
+      - 'ProjectSettings/**'
+      - '.github/**'
+  workflow_dispatch:
+
+# o singura construire odata; cea noua asteapta, nu o opreste pe cea pornita
+concurrency:
+  group: apk
+  cancel-in-progress: false
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/pregateste-unity
+        with:
+          email: ${{ secrets.UNITY_EMAIL }}
+          parola: ${{ secrets.UNITY_PASSWORD }}
+
+      - name: Ia memoria importului (Library)
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: library-android-${{ hashFiles('Packages/manifest.json', 'ProjectSettings/ProjectVersion.txt') }}-${{ github.sha }}
+          restore-keys: |
+            library-android-${{ hashFiles('Packages/manifest.json', 'ProjectSettings/ProjectVersion.txt') }}-
+            library-android-
+
+      - name: Aplica configurarea (separat, ca Input System sa fie activ la construire)
+        run: |
+          "$UNITY_EDITOR_PATH" -batchmode -nographics -quit -projectPath . -buildTarget Android \
+            -executeMethod Westropolis.EditorTools.Configurare.Aplica -logFile configurare.log || COD=$?
+          grep -E "error CS|\[Westropolis\]|Exception" configurare.log | head -100 || true
+          if grep -q "error CS" configurare.log || [ -n "$COD" ]; then tail -80 configurare.log; exit 1; fi
+
+      - name: Construieste APK-ul
+        run: |
+          "$UNITY_EDITOR_PATH" -batchmode -nographics -quit -projectPath . -buildTarget Android \
+            -executeMethod Westropolis.EditorTools.Construire.ApkAndroid -logFile construire.log || COD=$?
+          grep -E "\[Westropolis\]|error CS|Exception|BuildFailed|Build completed" construire.log | tail -60 || true
+          ls -lh Build/ || true
+          if [ ! -f Build/Westropolis.apk ]; then
+            grep -E "error|Error|Exception" construire.log | tail -100
+            tail -80 construire.log
+            exit 1
+          fi
+
+      - name: Publica APK-ul in Releases („test”)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          NOTE="APK de test (Development Build), construirea ${GITHUB_RUN_NUMBER}, ramura ${GITHUB_REF_NAME}, commit ${GITHUB_SHA::7}. Se inlocuieste la fiecare construire."
+          gh release view test > /dev/null 2>&1 || gh release create test --prerelease --title "Westropolis - APK de test" --notes "$NOTE"
+          gh release edit test --notes "$NOTE"
+          gh release upload test Build/Westropolis.apk --clobber
+
+      - name: Jurnalele construirii
+        if: always()
+        run: |
+          {
+            echo "## Construirea ${GITHUB_RUN_NUMBER}"
+            echo '```'
+            grep -hE "\[Westropolis\]|error CS|Exception|Build completed" configurare.log construire.log 2>/dev/null | tail -60
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

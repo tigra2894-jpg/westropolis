@@ -1,0 +1,62 @@
+name: Pregateste Unity
+description: >-
+  Elibereaza disc, instaleaza Unity 6000.3.25f1 cu modulul Android si activeaza licenta Personal
+  (secretele UNITY_EMAIL si UNITY_PASSWORD). Folosit de verificare.yml si apk-android.yml.
+inputs:
+  email:
+    description: Contul Unity (secretul UNITY_EMAIL)
+    required: true
+  parola:
+    description: Parola contului Unity (secretul UNITY_PASSWORD)
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Verifica secretele Unity
+      shell: bash
+      env:
+        U: ${{ inputs.email }}
+        P: ${{ inputs.parola }}
+      run: |
+        if [ -z "$U" ] || [ -z "$P" ]; then
+          echo "::error::Lipsesc secretele UNITY_EMAIL si UNITY_PASSWORD (Settings -> Secrets and variables -> Actions)."
+          exit 1
+        fi
+
+    # Unity + Android ocupa ~15 GB; scoatem din imaginea runner-ului uneltele pe care nu le folosim
+    - name: Elibereaza spatiu pe disc
+      shell: bash
+      continue-on-error: true
+      run: |
+        df -h / | tail -1
+        sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /usr/local/.ghcup /opt/hostedtoolcache/CodeQL \
+          /usr/local/share/boost /usr/local/share/powershell /usr/local/share/chromium /usr/share/swift \
+          /usr/local/julia* /opt/az /usr/local/aws-cli /usr/local/lib/node_modules || true
+        sudo docker image prune --all --force > /dev/null 2>&1 || true
+        df -h / | tail -1
+
+    - name: Pregateste Unity Hub
+      shell: bash
+      run: |
+        wget -qO - https://hub.unity3d.com/linux/keys/public | gpg --dearmor | sudo tee /usr/share/keyrings/Unity_Technologies_ApS.gpg > /dev/null
+        echo "deb [signed-by=/usr/share/keyrings/Unity_Technologies_ApS.gpg] https://hub.unity3d.com/linux/repos/deb stable main" | sudo tee /etc/apt/sources.list.d/unityhub.list
+        sudo apt-get update -qq && sudo NEEDRESTART_SUSPEND=1 NEEDRESTART_MODE=l apt-get install -y -qq unityhub xvfb mesa-utils libgl1-mesa-dri
+        # Hub 3.20+ sta in /usr/lib/unityhub; unity-setup@v2 il cauta in /opt/unityhub
+        sudo rm -rf /opt/unityhub
+        sudo ln -sfn /usr/lib/unityhub /opt/unityhub
+        printf '#!/bin/bash\nexec xvfb-run --auto-servernum /usr/lib/unityhub/unityhub "$@" 2>/dev/null\n' | sudo tee /usr/bin/unity-hub > /dev/null
+        sudo chmod +x /usr/bin/unity-hub
+
+    - name: Instaleaza Unity 6000.3.25f1 cu modulul Android
+      uses: RageAgainstThePixel/unity-setup@v2
+      with:
+        unity-version: '6000.3.25f1'
+        version-file: 'None'
+        build-targets: 'Android'
+
+    - name: Activeaza licenta Unity Personal
+      uses: RageAgainstThePixel/activate-unity-license@v2
+      with:
+        license: 'Personal'
+        username: ${{ inputs.email }}
+        password: ${{ inputs.parola }}

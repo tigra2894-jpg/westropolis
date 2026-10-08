@@ -1,0 +1,59 @@
+name: Verificare rapida
+
+# Etapa 0.14: compilare + teste automate la fiecare push care schimba cod sau setari (orice ramura).
+# Testele pica -> ramura nu se uneste in main.
+on:
+  push:
+    paths:
+      - 'Assets/**'
+      - 'Packages/**'
+      - 'ProjectSettings/**'
+      - '.github/**'
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: verificare-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/pregateste-unity
+        with:
+          email: ${{ secrets.UNITY_EMAIL }}
+          parola: ${{ secrets.UNITY_PASSWORD }}
+
+      - name: Ia memoria importului (Library)
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: library-verificare-${{ hashFiles('Packages/manifest.json', 'ProjectSettings/ProjectVersion.txt') }}-${{ github.sha }}
+          restore-keys: |
+            library-verificare-${{ hashFiles('Packages/manifest.json', 'ProjectSettings/ProjectVersion.txt') }}-
+            library-verificare-
+
+      - name: Compileaza si aplica configurarea
+        run: |
+          "$UNITY_EDITOR_PATH" -batchmode -nographics -quit -projectPath . \
+            -executeMethod Westropolis.EditorTools.Configurare.Aplica -logFile configurare.log || COD=$?
+          grep -E "error CS|\[Westropolis\]|Exception|Scripts have compiler errors" configurare.log | head -100 || true
+          if grep -q "error CS" configurare.log || [ -n "$COD" ]; then echo "::error::Compilarea sau configurarea a esuat"; tail -80 configurare.log; exit 1; fi
+
+      - name: Teste automate (EditMode)
+        run: |
+          "$UNITY_EDITOR_PATH" -batchmode -nographics -projectPath . -runTests -testPlatform EditMode \
+            -testResults rezultate-teste.xml -logFile teste.log || COD=$?
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import xml.etree.ElementTree as ET
+          r = ET.parse('rezultate-teste.xml').getroot()
+          print(f"## Teste: {r.get('passed')} trecute, {r.get('failed')} picate, {r.get('skipped')} sarite")
+          for t in r.iter('test-case'):
+            print(f"- {'OK' if t.get('result') == 'Passed' else 'PICAT'} {t.get('fullname')}")
+          PY
+          cat "$GITHUB_STEP_SUMMARY"
+          if [ -n "$COD" ]; then grep -E "error|Exception" teste.log | tail -50; exit 1; fi
