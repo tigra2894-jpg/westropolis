@@ -458,6 +458,7 @@ conceptul jocului pe o pagină. Asta dovedește că tot lanțul funcționează �
 - [ ] **0.10 CLAUDE.md și fișierele de memorie.** Claude Code creează `CLAUDE.md` (regulile fixe, protecțiile, „întâi
   gândit”, regulile repo-ului public), pune acest `PLAN.md` în proiect și creează `JURNAL.md`, `DECIZII.md`,
   `CREDITS.md`, `ERORI.md`, `VERIFICARE.md`. *Merge și de pe telefon.* *Gata când:* toate fișierele sunt pe GitHub.
+  *Făcută la 08.10.2026, înaintea etapelor 0.4–0.9, cu acordul utilizatorului (nu era la Mac).*
 - [ ] **0.11 Fundația proiectului.** Folderele din 6.2; straturile (Player, Vehicul, Cal, NPC, Teren, Clădiri, Apă,
   Interacțiune, Proiectil) și matricea de coliziuni; Localization configurat (limbile en și ro, primul tabel de texte,
   limba aleasă salvată). *Gata când:* totul e notat în `DECIZII.md`, zero erori.
