@@ -38,7 +38,7 @@ următoarea. O etapă poate dura oricât e nevoie, dar odată terminată nu mai 
 | Pachet Android | com.tigra2805.westropolis (nu se mai poate schimba după publicare) |
 | Proiecte vechi | `Ardeal-City` și `Orasul` se șterg complet (cu tot cu istorie, ramuri și release-uri); proiectul pornește într-un repo nou, curat, `westropolis` (08.10.2026) |
 | Repo-uri | **Public** `westropolis` (codul, scenele, modelele CC0/CC-BY) + **privat** `westropolis-privat` (doar ce nu are voie să fie public: animațiile Mixamo, pachetele din Asset Store) |
-| Calculator | MacBook M2 (Apple Silicon), macOS 15 Sequoia (Unity + Claude Code + Blender; Xcode pentru construirea macOS) |
+| Calculator | MacBook M2 (Apple Silicon), 8 GB RAM, macOS 15 Sequoia; construirile grele pe GitHub Actions (Unity + Claude Code + Blender; Xcode pentru construirea macOS) |
 | Experiență Unity | Deloc: fiecare pas explicat detaliat |
 | Lucru de pe telefon | Da: scripturi și logică prin Claude Code pe GitHub; partea vizuală doar pe Mac |
 | Lume | Amestec: oraș modern (GTA) + Vest Sălbatic (Red Dead); legătura dintre ele se hotărăște la 0.19 |

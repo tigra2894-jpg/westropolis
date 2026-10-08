@@ -23,3 +23,4 @@ Fiecare decizie importantă și de ce s-a luat. Deciziile din `PLAN.md` cap. 9 l
 | 08.10.2026 | Textele panoului de test nu trec prin Localization | Sunt tehnice, pentru dezvoltator, și nu apar în versiunea publică |
 | 08.10.2026 | Render Scale 0,7 și 30 FPS pe telefon, aplicate la pornire (`SetariGrafice.cs`); 60 FPS și scara 1 pe Mac | Bugetul de performanță; valorile finale la 3.7 |
 | 08.10.2026 | Straturi de la indexul 8: Player, Vehicul, Cal, NPC, Teren, Cladiri, Apa, Interactiune, Proiectil; Interactiune atinge doar Player; Proiectil nu atinge Interactiune și Proiectil | Fundația 0.11 |
+| 08.10.2026 | MacBook M2 cu 8 GB RAM: Mac-ul doar pentru editare și verificare; APK, teste și coacerea luminii pe GitHub Actions | Cu 8 GB, Unity + Android + IL2CPP umplu memoria și Mac-ul se blochează în swap |
