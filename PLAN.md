@@ -422,6 +422,10 @@ conceptul jocului pe o pagină. Asta dovedește că tot lanțul funcționează �
   Support” (cu OpenJDK și SDK/NDK) și „Mac Build Support”. Versiunea trebuie să suporte paginile de memorie de 16 KB
   (cerință Google Play). Licență: Unity Personal, gratuită. *Gata când:* Unity Hub arată versiunea cu cele două module;
   versiunea exactă e notată.
+  *Decizie (08.10.2026, aprobată de utilizator):* **Unity 6.3 LTS** (`6000.3.x`, cel mai nou patch LTS din Unity Hub;
+  ultimul găsit pe web: `6000.3.24f1`), cu suport până în decembrie 2027. Unity 6.0 LTS iese din suport în octombrie
+  2026, Unity 6.6 nu e LTS, Unity 6.7 LTS nu a apărut încă. O eventuală trecere la 6.7 LTS se face o singură dată,
+  doar cu acordul utilizatorului și notată în `DECIZII.md`. Numărul exact al patch-ului se notează la instalare.
 - [ ] **0.4 Blender.** Instalezi Blender (ultima versiune stabilă, gratuit). Claude Code verifică că îl poate porni din
   terminal (scripturi Python pentru scară, orientare, LOD, export FBX). *Gata când:* un cub exportat din Blender intră în
   Unity la 1 × 1 × 1 m, cu fața spre +Z.
