@@ -19,3 +19,10 @@ Fiecare eroare: ce s-a întâmplat, cauza reală, cum s-a reparat, cum se evită
 - Ce: `git push --delete` pe o ramură și crearea unui repo prin GitHub → refuzate (403).
 - Cauza: drepturile sesiunii cloud nu acoperă ștergerea ramurilor și crearea repo-urilor.
 - Evitare: le face utilizatorul (butonul „Delete branch” din PR; github.com/new), cu pașii explicați.
+
+## E4 (08.10.2026) – licența Unity pe GitHub: „Invalid Credential” (401)
+- Ce: Unity `6000.3.25f1` s-a instalat (7 min), dar activarea licenței Personal a dat `Invalid Credential, 143.002 (401)`.
+- Cauza: serverul Unity nu acceptă combinația din `UNITY_EMAIL` / `UNITY_PASSWORD` (greșeală de scriere, spațiu sau
+  rând nou în plus, cont făcut cu Google / Apple fără parolă proprie, sau verificare în doi pași activă).
+- Reparat: utilizatorul verifică autentificarea pe id.unity.com și pune din nou secretele.
+- Evitare: secretele se lipesc fără spații / rânduri în plus; contul Unity are parolă proprie, fără verificare în doi pași.
