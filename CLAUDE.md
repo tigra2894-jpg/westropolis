@@ -10,4 +10,5 @@ Orasul) nu se păstrează și nu se mai aplică.
 
 ## Stadiul
 - Numele jocului: **Westropolis**, pachetul `com.tigra2805.westropolis` (hotărât la 08.10.2026; fostul nume de lucru „Lawless: Two Worlds”).
-- Etapa curentă: **0.1** – așteaptă verificarea în TMview făcută de utilizator, apoi „merge”.
+- Etape gata: 0.1 (numele, „merge” la 08.10.2026), 0.2 (repo-urile vechi șterse complet).
+- Etapa curentă: **0.3 – Unity Hub și Unity 6 LTS** (pe Mac).

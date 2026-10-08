@@ -409,7 +409,7 @@ Dacă lipsește ceva, se rezolvă întâi lipsa, apoi începe construcția.
 La finalul fazei 0 ai pe Galaxy S21 Ultra un APK cu un cub și panoul de test, construit automat de GitHub, plus
 conceptul jocului pe o pagină. Asta dovedește că tot lanțul funcționează înainte de a scrie jocul.
 
-- [ ] **0.1 Numele jocului.** Hotărât de utilizator la 08.10.2026: **Westropolis** (West + Metropolis: cele două lumi
+- [x] **0.1 Numele jocului.** Hotărât de utilizator la 08.10.2026: **Westropolis** (West + Metropolis: cele două lumi
   într-un cuvânt), pachetul `com.tigra2805.westropolis`. Vechiul nume „Lawless: Two Worlds” a fost abandonat: „Lawless”
   e folosit de multe jocuri (Lawless West, The Lawless, Lawless de la DeNA, Lawless Lands), iar „Two Worlds” e seria
   TopWare Interactive. Căutarea pe web (08.10.2026): niciun joc „Westropolis”; nume apropiate fără risc real: Westopia
@@ -717,4 +717,4 @@ Claude Code nu le ia singur: îl întreabă pe utilizator când ajunge la faza r
 
 ---
 
-**Următorul pas:** Faza 0, etapa 0.1 – verificarea numelui „Westropolis” în TMview, apoi etapa 0.3 – instalarea Unity pe Mac.
+**Următorul pas:** Faza 0, etapa 0.3 – instalarea Unity Hub și a Unity 6 LTS pe Mac.
