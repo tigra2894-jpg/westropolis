@@ -28,3 +28,6 @@ Ce s-a făcut, ce e în lucru, probleme cunoscute, următorul pas. Se scrie la f
   `pregateste-unity`. `.gitignore` (cu liniile de siguranță), `.gitattributes`, `README.md`.
 - Necompilat încă: aici nu există Unity; prima verificare reală e pe GitHub, după secretele `UNITY_EMAIL` și `UNITY_PASSWORD`.
 - **Următorul pas:** utilizatorul pune cele 2 secrete → pornesc verificarea → repar ce iese → APK-ul pe telefon.
+- Verificarea pe GitHub: Unity `6000.3.25f1` + Android se instalează (~8 min), dar licența e refuzată de 4 ori
+  („Invalid Credential”, E4). Secretele sunt curate (fără spații, e-mail valid) → contul / parola Unity e problema.
+  Oprit după regula celor 2 încercări; utilizatorul alege calea (A / B / C din `ERORI.md` E4).

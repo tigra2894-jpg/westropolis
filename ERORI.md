@@ -24,5 +24,9 @@ Fiecare eroare: ce s-a întâmplat, cauza reală, cum s-a reparat, cum se evită
 - Ce: Unity `6000.3.25f1` s-a instalat (7 min), dar activarea licenței Personal a dat `Invalid Credential, 143.002 (401)`.
 - Cauza: serverul Unity nu acceptă combinația din `UNITY_EMAIL` / `UNITY_PASSWORD` (greșeală de scriere, spațiu sau
   rând nou în plus, cont făcut cu Google / Apple fără parolă proprie, sau verificare în doi pași activă).
-- Reparat: utilizatorul verifică autentificarea pe id.unity.com și pune din nou secretele.
+- Încercări (08.10.2026): secretele puse de 2 ori, apoi curățarea automată a spațiilor (pasul „Verifica secretele
+  Unity”, fără avertismente: secretele nu aveau spații, e-mailul are forma corectă). Tot 401 → serverul Unity respinge
+  chiar contul / parola (cont făcut cu Google / Apple fără parolă proprie, verificare în doi pași, alt e-mail).
+- Regula celor 2 încercări: oprit; căile propuse utilizatorului: (A) parolă proprie Unity + fără verificarea în doi
+  pași; (B) cont Unity nou, doar cu e-mail + parolă, pentru GitHub; (C) fișierul de licență de pe Mac (`UNITY_LICENSE`).
 - Evitare: secretele se lipesc fără spații / rânduri în plus; contul Unity are parolă proprie, fără verificare în doi pași.
