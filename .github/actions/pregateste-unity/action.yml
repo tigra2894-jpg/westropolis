@@ -12,6 +12,8 @@ inputs:
 runs:
   using: composite
   steps:
+    # Verifica forma secretelor (fara sa le afiseze; jurnalele repo-ului public sunt publice) si scoate spatiile /
+    # randurile goale lipite din greseala (eroarea E4, „Invalid Credential”).
     - name: Verifica secretele Unity
       shell: bash
       env:
@@ -22,6 +24,16 @@ runs:
           echo "::error::Lipsesc secretele UNITY_EMAIL si UNITY_PASSWORD (Settings -> Secrets and variables -> Actions)."
           exit 1
         fi
+        UC="$(printf '%s' "$U" | tr -d '\r\n' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+        PC="$(printf '%s' "$P" | tr -d '\r\n' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+        [ "$UC" != "$U" ] && echo "::warning::UNITY_EMAIL avea spatii sau randuri goale in plus; le-am scos."
+        [ "$PC" != "$P" ] && echo "::warning::UNITY_PASSWORD avea spatii sau randuri goale in plus; le-am scos."
+        case "$UC" in *@*.*) echo "UNITY_EMAIL are forma unei adrese de e-mail." ;;
+          *) echo "::warning::UNITY_EMAIL nu arata ca o adresa de e-mail (lipseste @ sau punctul)." ;; esac
+        echo "::add-mask::$UC"
+        echo "::add-mask::$PC"
+        echo "UNITY_EMAIL_CURAT=$UC" >> "$GITHUB_ENV"
+        echo "UNITY_PAROLA_CURATA=$PC" >> "$GITHUB_ENV"
 
     # Unity + Android ocupa ~15 GB; scoatem din imaginea runner-ului uneltele pe care nu le folosim
     - name: Elibereaza spatiu pe disc
@@ -58,5 +70,5 @@ runs:
       uses: RageAgainstThePixel/activate-unity-license@v2
       with:
         license: 'Personal'
-        username: ${{ inputs.email }}
-        password: ${{ inputs.parola }}
+        username: ${{ env.UNITY_EMAIL_CURAT }}
+        password: ${{ env.UNITY_PAROLA_CURATA }}
